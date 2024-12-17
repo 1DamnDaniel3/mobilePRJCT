@@ -33,7 +33,7 @@ export default function RegistrationScreen({ onRegistration, onLogin }: Registra
             // Выполнение регистрации
             const user = await registrateUser(email, password, name, phone);
             console.log('Пользователь зарегистрирован:', user);
-            onRegistration(); // Обновление состояния после успешной регистрации
+            onLogin(); // Обновление состояния после успешной регистрации
         } catch (error) {
             Alert.alert('Ошибка', 'Не удалось зарегистрироваться. Попробуйте снова.');
         }
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: '#ccc',
-        borderRadius: 8,
+        borderRadius: 12,
         padding: 12,
     },
     regButton: {

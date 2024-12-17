@@ -38,8 +38,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Каталог',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="CartPage"
+        options={{
+          title: 'Корзина',
+          tabBarIcon: ({ color }) => <TabBarIcon name="cart-plus" color={color} />,
         }}
       />
       <Tabs.Screen

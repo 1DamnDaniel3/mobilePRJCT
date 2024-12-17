@@ -1,10 +1,23 @@
-import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
+import { addProductToCartById } from '@/services/addToCart';
+import { StyleSheet, View, Image, Text, Pressable, GestureResponderEvent } from 'react-native';
 
 
 
-type ItemProps = {title: string, imageUrl: string, price: string, weight?: string | number;};
+type ItemProps = {
+    title: string,
+    imageUrl: string,
+    price: string,
+    weight?: string | number,
+    buttonTitle: string,
+    user_id: { id: number; },
+    product_id: number
+};
 
-export default function StuffCard({title, imageUrl, price, weight}: ItemProps) {
+export default function StuffCard({ title, imageUrl, price, weight, user_id, product_id }: ItemProps) {
+    const handle = () => {
+        addProductToCartById(user_id.id, product_id, 1)
+        console.log('add to cart', 'userid: ', user_id.id, ' productid: ', product_id)
+    }
     return (
         <View style={styles.container}>
             <Image
@@ -18,7 +31,7 @@ export default function StuffCard({title, imageUrl, price, weight}: ItemProps) {
                     {weight === 'null' ? ' ' : `${String(weight)} г`}
                 </Text>
             </View>
-            <Pressable style={styles.btn}>
+            <Pressable style={styles.btn} onPress={handle}>
                 <Text style={styles.btnLabel}>В корзину</Text>
             </Pressable>
         </View>
@@ -55,7 +68,7 @@ const styles = StyleSheet.create({
         fontWeight: 500,
         fontSize: 11,
         color: "#444",
-        
+        maxWidth: '85%',
     },
 
     price: {
